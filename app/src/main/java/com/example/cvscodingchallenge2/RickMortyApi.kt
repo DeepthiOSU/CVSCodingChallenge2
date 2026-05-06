@@ -1,0 +1,11 @@
+package com.example.cvscodingchallenge2
+
+import retrofit2.http.GET
+import retrofit2.http.Query
+
+interface RickMortyApi {
+    @GET("character")
+    suspend fun searchCharacters(
+        @Query("name") name: String
+    ): CharacterResponse
+}
