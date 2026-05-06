@@ -1,16 +1,15 @@
-package com.example.cvscodingchallenge2
+package com.example.cvscodingchallenge2.ui.search
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -20,9 +19,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import coil3.compose.AsyncImage
+import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
 
 @Composable
 fun CharacterScreen(
@@ -49,7 +49,12 @@ fun CharacterScreen(
 
         when (state) {
             is UiState.Loading -> {
-                CircularProgressIndicator()
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator()
+                }
             }
 
             is UiState.Success -> {
@@ -70,48 +75,5 @@ fun CharacterScreen(
 
             else -> Unit
         }
-    }
-}
-
-@Composable
-fun CharacterItem(
-    character: CharacterDto,
-    onClick: (CharacterDto) -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .padding(8.dp)
-            .clickable { onClick(character) }
-    ) {
-        AsyncImage(
-            model = character.image,
-            contentDescription = character.name,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Text(text = character.name)
-    }
-}
-
-@Composable
-fun CharacterDetail(character: CharacterDto) {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-
-        Text(text = character.name)
-
-        AsyncImage(
-            model = character.image,
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Text("Species: ${character.species}")
-        Text("Status: ${character.status}")
-        Text("Origin: ${character.origin.name}")
-
-        character.type?.takeIf { it.isNotBlank() }?.let {
-            Text("Type: $it")
-        }
-
-//        Text("Created: ${formatDate(character.created)}")
     }
 }

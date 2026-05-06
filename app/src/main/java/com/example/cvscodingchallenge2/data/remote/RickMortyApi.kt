@@ -1,5 +1,6 @@
-package com.example.cvscodingchallenge2
+package com.example.cvscodingchallenge2.data.remote
 
+import com.example.cvscodingchallenge2.data.remote.dto.CharacterResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

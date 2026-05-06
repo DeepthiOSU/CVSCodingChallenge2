@@ -1,7 +1,9 @@
-package com.example.cvscodingchallenge2
+package com.example.cvscodingchallenge2.ui.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
+import com.example.cvscodingchallenge2.data.repository.CharacterRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow

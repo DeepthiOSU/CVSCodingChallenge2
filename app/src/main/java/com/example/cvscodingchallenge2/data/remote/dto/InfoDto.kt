@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2
+package com.example.cvscodingchallenge2.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 

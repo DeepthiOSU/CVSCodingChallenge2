@@ -5,13 +5,13 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.cvscodingchallenge2.data.remote.RickMortyApi
+import com.example.cvscodingchallenge2.data.repository.CharacterRepository
+import com.example.cvscodingchallenge2.ui.search.CharacterViewModel
 import com.example.cvscodingchallenge2.ui.theme.CVSCodingChallenge2Theme
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
