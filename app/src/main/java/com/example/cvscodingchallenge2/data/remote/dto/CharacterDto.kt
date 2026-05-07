@@ -10,7 +10,7 @@ data class CharacterDto(
     val origin: OriginDto,
     val location: LocationDto,
     val image: String,
-    val episode : ArrayList<String>,
+    val episode: List<String>,
     val url: String,
     val created: String
 )

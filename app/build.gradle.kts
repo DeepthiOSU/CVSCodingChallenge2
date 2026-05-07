@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.converter.gson)
+    // Standard icons (Core)
+    implementation(libs.androidx.compose.material.icons.core)
     // Compose Navigation
     implementation(libs.androidx.navigation.compose)
 

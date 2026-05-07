@@ -42,7 +42,7 @@ fun HomeScreen(viewModel: CharacterViewModel) {
                 ?.find { it.id == id }
 
             character?.let {
-                CharacterDetail(it)
+                CharacterDetail(it, { navController.popBackStack() })
             }
         }
     }

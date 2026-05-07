@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
+import retrofit2.HttpException
 
 class CharacterViewModel(
     private val repository: CharacterRepository
@@ -40,6 +41,12 @@ class CharacterViewModel(
                                 emit(UiState.Empty)
                             } else {
                                 emit(UiState.Success(result))
+                            }
+                        } catch (e: HttpException) {
+                            if (e.code() == 404) {
+                                emit(UiState.Empty)
+                            } else {
+                                emit(UiState.Error)
                             }
                         } catch (e: Exception) {
                             emit(UiState.Error)

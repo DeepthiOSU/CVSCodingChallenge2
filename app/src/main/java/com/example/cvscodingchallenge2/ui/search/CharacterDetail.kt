@@ -1,36 +1,108 @@
 package com.example.cvscodingchallenge2.ui.search
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
+import com.example.cvscodingchallenge2.data.remote.dto.LocationDto
+import com.example.cvscodingchallenge2.data.remote.dto.OriginDto
+import com.example.cvscodingchallenge2.ui.theme.CVSCodingChallenge2Theme
 import com.example.cvscodingchallenge2.util.DateUtil
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterDetail(character: CharacterDto) {
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
-
-        Text(text = character.name)
-
-        AsyncImage(
-            model = character.image,
-            contentDescription = null,
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Text("Species: ${character.species}")
-        Text("Status: ${character.status}")
-        Text("Origin: ${character.origin.name}")
-
-        character.type?.takeIf { it.isNotBlank() }?.let {
-            Text("Type: $it")
+fun CharacterDetail(
+    character: CharacterDto,
+    onBackClick: () -> Unit
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("")
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = onBackClick
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
+                }
+            )
         }
+    ) { innerPadding ->
+        Column(
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
+                .padding(innerPadding)
+                .verticalScroll(rememberScrollState())
+        ) {
 
-        Text("Created: ${DateUtil().formatDate(character.created)}")
+            Text(text = character.name)
+            Spacer(modifier = Modifier.height(16.dp))
+            AsyncImage(
+                model = character.image,
+                contentDescription = null,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Species: ${character.species}")
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Status: ${character.status}")
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Origin: ${character.origin.name}")
+            character.type?.takeIf { it.isNotBlank() }?.let {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text("Type: $it")
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Text("Created: ${DateUtil().formatDate(character.created)}")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun CharacterDetailPreview() {
+    CVSCodingChallenge2Theme {
+        CharacterDetail(
+            CharacterDto(
+                810,
+                "Stan Lee Rick",
+                "unknown",
+                "Human",
+                "",
+                "Male",
+                OriginDto("unknown", ""),
+                LocationDto("Citadel of Ricks", "https://rickandmortyapi.com/api/location/3"),
+                "https://rickandmortyapi.com/api/character/avatar/810.jpeg",
+                listOf("https://rickandmortyapi.com/api/episode/51"),
+                "https://rickandmortyapi.com/api/character/810",
+                "2021-11-02T13:55:06.815Z"
+            )
+        ) { }
     }
 }
