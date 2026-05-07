@@ -31,7 +31,7 @@ fun CharacterScreen(
     viewModel: CharacterViewModel,
     onItemClick: (CharacterDto) -> Unit
 ) {
-    val query by viewModel.query.collectAsState()
+    val query by viewModel.filters.collectAsState()
     val state by viewModel.uiState.collectAsState()
     Scaffold(
         topBar = {
@@ -51,13 +51,26 @@ fun CharacterScreen(
         ) {
 
             OutlinedTextField(
-                value = query,
+                value = query.query,
                 onValueChange = {
                     viewModel.onQueryChange(it)
                 },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = { Text("Search characters...") },
                 singleLine = true
+            )
+
+            Spacer(Modifier.height(dimensionResource(R.dimen.standard_padding)))
+
+            // FilterSection
+            FilterSection(
+                selectedStatus = query.status,
+                selectedSpecies = query.species,
+                selectedType = query.type,
+                onStatusSelected = viewModel::onStatusSelected,
+                onSpeciesSelected = viewModel::onSpeciesSelected,
+                onTypeSelected = viewModel::onTypeSelected,
+                onClearFilters = viewModel::clearFilters
             )
 
             Spacer(Modifier.height(dimensionResource(R.dimen.standard_padding)))

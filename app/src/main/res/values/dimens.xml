@@ -2,5 +2,5 @@
 <resources>
     <dimen name="standard_padding">16dp</dimen>
     <dimen name="small_padding">8dp</dimen>
-    <dimen name="gridcell_padding">150dp</dimen>
+    <dimen name="gridcell_padding">160dp</dimen>
 </resources>
