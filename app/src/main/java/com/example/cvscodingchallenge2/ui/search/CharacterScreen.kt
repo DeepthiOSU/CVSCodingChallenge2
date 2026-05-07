@@ -21,7 +21,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.example.cvscodingchallenge2.R
 import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,7 +47,7 @@ fun CharacterScreen(
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(16.dp)
+                .padding(dimensionResource(R.dimen.standard_padding))
         ) {
 
             OutlinedTextField(
@@ -59,7 +60,7 @@ fun CharacterScreen(
                 singleLine = true
             )
 
-            Spacer(Modifier.height(8.dp))
+            Spacer(Modifier.height(dimensionResource(R.dimen.standard_padding)))
 
             when (state) {
 
@@ -85,7 +86,7 @@ fun CharacterScreen(
                     val data = (state as UiState.Success).data
 
                     LazyVerticalGrid(
-                        columns = GridCells.Adaptive(150.dp),
+                        columns = GridCells.Adaptive(dimensionResource(R.dimen.gridcell_padding)),
                         content = {
                             items(data, key = { it.id }) { character ->
                                 CharacterItem(character, onItemClick)

@@ -15,13 +15,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import com.example.cvscodingchallenge2.R
 import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
 import com.example.cvscodingchallenge2.data.remote.dto.LocationDto
 import com.example.cvscodingchallenge2.data.remote.dto.OriginDto
@@ -32,7 +34,8 @@ import com.example.cvscodingchallenge2.util.DateUtil
 @Composable
 fun CharacterDetail(
     character: CharacterDto,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
+    onShareClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
@@ -62,24 +65,27 @@ fun CharacterDetail(
         ) {
 
             Text(text = character.name)
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.standard_padding)))
             AsyncImage(
                 model = character.image,
                 contentDescription = null,
                 modifier = Modifier.fillMaxWidth()
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.standard_padding)))
             Text("Species: ${character.species}")
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.standard_padding)))
             Text("Status: ${character.status}")
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.standard_padding)))
             Text("Origin: ${character.origin.name}")
             character.type?.takeIf { it.isNotBlank() }?.let {
-                Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(dimensionResource(R.dimen.standard_padding)))
                 Text("Type: $it")
             }
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.standard_padding)))
             Text("Created: ${DateUtil().formatDate(character.created)}")
+            TextButton(onClick = { onShareClick() }) {
+                Text("Share")
+            }
         }
     }
 }
@@ -101,8 +107,9 @@ fun CharacterDetailPreview() {
                 "https://rickandmortyapi.com/api/character/avatar/810.jpeg",
                 listOf("https://rickandmortyapi.com/api/episode/51"),
                 "https://rickandmortyapi.com/api/character/810",
-                "2021-11-02T13:55:06.815Z"
-            )
+                "2021-11-02T13:55:06.815Z",
+            ),
+            onBackClick = { },
         ) { }
     }
 }
