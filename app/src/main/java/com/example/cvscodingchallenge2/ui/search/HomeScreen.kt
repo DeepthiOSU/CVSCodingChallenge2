@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2
+package com.example.cvscodingchallenge2.ui.search
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -8,13 +8,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.cvscodingchallenge2.ui.search.CharacterDetail
-import com.example.cvscodingchallenge2.ui.search.CharacterScreen
-import com.example.cvscodingchallenge2.ui.search.CharacterViewModel
-import com.example.cvscodingchallenge2.ui.search.UiState
 
 @Composable
-fun App(viewModel: CharacterViewModel) {
+fun HomeScreen(viewModel: CharacterViewModel) {
 
     val navController = rememberNavController()
 

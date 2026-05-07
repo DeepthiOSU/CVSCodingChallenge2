@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.stateIn
 
 class CharacterViewModel(
@@ -27,16 +27,23 @@ class CharacterViewModel(
     val uiState: StateFlow<UiState> =
         query
             .debounce(400)
-            .filter { it.isNotBlank() }
             .distinctUntilChanged()
             .flatMapLatest { search ->
-                flow {
-                    emit(UiState.Loading)
-                    try {
-                        val result = repository.search(search)
-                        emit(UiState.Success(result))
-                    } catch (e: Exception) {
-                        emit(UiState.Error)
+                if (search.isBlank()) {
+                    flowOf<UiState>(UiState.Idle)
+                } else {
+                    flow {
+                        emit(UiState.Loading)
+                        try {
+                            val result = repository.search(search)
+                            if (result.isEmpty()) {
+                                emit(UiState.Empty)
+                            } else {
+                                emit(UiState.Success(result))
+                            }
+                        } catch (e: Exception) {
+                            emit(UiState.Error)
+                        }
                     }
                 }
             }
@@ -53,7 +60,8 @@ class CharacterViewModel(
 
 sealed class UiState {
     object Idle : UiState()
+    object Empty : UiState()
     object Loading : UiState()
-    data class Success(val data: ArrayList<CharacterDto>) : UiState()
+    data class Success(val data: List<CharacterDto>) : UiState()
     object Error : UiState()
 }

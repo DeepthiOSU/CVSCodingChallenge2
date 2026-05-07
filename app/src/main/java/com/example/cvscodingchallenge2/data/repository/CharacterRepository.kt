@@ -6,7 +6,7 @@ import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
 class CharacterRepository(
     private val api: RickMortyApi
 ) {
-    suspend fun search(name: String): ArrayList<CharacterDto> {
+    suspend fun search(name: String): List<CharacterDto> {
         return api.searchCharacters(name).results
     }
 }

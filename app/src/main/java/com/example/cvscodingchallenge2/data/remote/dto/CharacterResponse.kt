@@ -2,5 +2,5 @@ package com.example.cvscodingchallenge2.data.remote.dto
 
 data class CharacterResponse(
     val info: InfoDto,
-    val results: ArrayList<CharacterDto>
+    val results: List<CharacterDto>
 )

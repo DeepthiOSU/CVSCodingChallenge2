@@ -44,6 +44,11 @@ fun CharacterScreen(
         Spacer(Modifier.height(8.dp))
 
         when (state) {
+
+            UiState.Idle -> {
+                Text("Start typing to search")
+            }
+
             is UiState.Loading -> {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -57,19 +62,22 @@ fun CharacterScreen(
                 val data = (state as UiState.Success).data
 
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(2)
-                ) {
-                    items(data, key = { it.id }) { character ->
-                        CharacterItem(character, onItemClick)
+                    columns = GridCells.Fixed(2),
+                    content = {
+                        items(data, key = { it.id }) { character ->
+                            CharacterItem(character, onItemClick)
+                        }
                     }
-                }
+                )
+            }
+
+            UiState.Empty -> {
+                Text("There is nothing here")
             }
 
             is UiState.Error -> {
                 Text("Something went wrong")
             }
-
-            else -> Unit
         }
     }
 }
