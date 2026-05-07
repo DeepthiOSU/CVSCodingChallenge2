@@ -13,7 +13,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.example.cvscodingchallenge2.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -47,7 +48,7 @@ fun FilterDropdown(
             },
             modifier = Modifier
                 .menuAnchor()
-                .width(160.dp)
+                .width(dimensionResource(R.dimen.gridcell_padding))
         )
 
         ExposedDropdownMenu(

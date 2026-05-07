@@ -11,7 +11,9 @@ import androidx.compose.material3.TextButton
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.dimensionResource
+import com.example.cvscodingchallenge2.R
+
 
 @Composable
 fun FilterSection(
@@ -28,7 +30,7 @@ fun FilterSection(
         modifier = Modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState()),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.small_padding)),
         verticalAlignment = Alignment.CenterVertically
     ) {
 
@@ -40,7 +42,7 @@ fun FilterSection(
         )
 
         OutlinedTextField(
-            value = selectedSpecies?: "",
+            value = selectedSpecies ?: "",
             onValueChange = {
                 onSpeciesSelected(it)
             },
@@ -50,7 +52,7 @@ fun FilterSection(
         )
 
         OutlinedTextField(
-            value = selectedType?: "",
+            value = selectedType ?: "",
             onValueChange = {
                 onTypeSelected(it)
             },
