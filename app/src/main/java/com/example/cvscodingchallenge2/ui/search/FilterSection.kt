@@ -5,10 +5,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -26,7 +28,8 @@ fun FilterSection(
         modifier = Modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState()),
-        horizontalArrangement = Arrangement.spacedBy(8.dp)
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
 
         FilterDropdown(
@@ -36,32 +39,30 @@ fun FilterSection(
             onOptionSelected = onStatusSelected
         )
 
-        FilterDropdown(
-            label = "Species",
-            options = listOf(
-                "Human",
-                "Alien",
-                "Robot",
-                "Animal"
-            ),
-            selectedOption = selectedSpecies,
-            onOptionSelected = onSpeciesSelected
+        OutlinedTextField(
+            value = selectedSpecies?: "",
+            onValueChange = {
+                onSpeciesSelected(it)
+            },
+            label = {
+                Text("Species")
+            }
         )
 
-        FilterDropdown(
-            label = "Type",
-            options = listOf(
-                "Parasite",
-                "Clone",
-                "Mythological Creature"
-            ),
-            selectedOption = selectedType,
-            onOptionSelected = onTypeSelected
+        OutlinedTextField(
+            value = selectedType?: "",
+            onValueChange = {
+                onTypeSelected(it)
+            },
+            label = {
+                Text("Type")
+            }
         )
 
         TextButton(
             onClick = onClearFilters
-        ) {
+        )
+        {
             Text("Clear Filters")
         }
     }
