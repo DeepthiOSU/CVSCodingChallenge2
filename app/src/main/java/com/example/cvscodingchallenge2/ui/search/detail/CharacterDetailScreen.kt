@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.ui.search
+package com.example.cvscodingchallenge2.ui.search.detail
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,7 +32,7 @@ import com.example.cvscodingchallenge2.util.DateUtil
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterDetail(
+fun CharacterDetailScreen(
     character: CharacterDto,
     onBackClick: () -> Unit,
     onShareClick: () -> Unit
@@ -94,7 +94,7 @@ fun CharacterDetail(
 @Composable
 fun CharacterDetailPreview() {
     CVSCodingChallenge2Theme {
-        CharacterDetail(
+        CharacterDetailScreen(
             CharacterDto(
                 810,
                 "Stan Lee Rick",

@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.ui.search
+package com.example.cvscodingchallenge2.ui.navigation
 
 import android.content.Intent
 import androidx.compose.runtime.Composable
@@ -10,10 +10,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.cvscodingchallenge2.ui.search.CharacterListScreen
+import com.example.cvscodingchallenge2.ui.search.CharacterViewModel
+import com.example.cvscodingchallenge2.ui.search.UiState
+import com.example.cvscodingchallenge2.ui.search.detail.CharacterDetailScreen
 import com.example.cvscodingchallenge2.util.DateUtil
 
 @Composable
-fun HomeScreen(viewModel: CharacterViewModel) {
+fun AppNavHost(viewModel: CharacterViewModel) {
 
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -24,7 +28,7 @@ fun HomeScreen(viewModel: CharacterViewModel) {
     ) {
 
         composable("list") {
-            CharacterScreen(
+            CharacterListScreen(
                 viewModel = viewModel,
                 onItemClick = { character ->
                     navController.navigate("detail/${character.id}")
@@ -46,7 +50,7 @@ fun HomeScreen(viewModel: CharacterViewModel) {
                 ?.find { it.id == id }
 
             character?.let {
-                CharacterDetail(it, { navController.popBackStack() }) {
+                CharacterDetailScreen(it, { navController.popBackStack() }) {
 
                     val text = buildString {
 

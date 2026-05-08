@@ -24,10 +24,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import com.example.cvscodingchallenge2.R
 import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
+import com.example.cvscodingchallenge2.ui.search.components.CharacterItem
+import com.example.cvscodingchallenge2.ui.search.components.FilterSection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterScreen(
+fun CharacterListScreen(
     viewModel: CharacterViewModel,
     onItemClick: (CharacterDto) -> Unit
 ) {

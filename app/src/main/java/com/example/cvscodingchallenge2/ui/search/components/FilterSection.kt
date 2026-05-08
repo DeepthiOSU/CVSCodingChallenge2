@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.ui.search
+package com.example.cvscodingchallenge2.ui.search.components
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -21,8 +21,8 @@ fun FilterSection(
     selectedSpecies: String?,
     selectedType: String?,
     onStatusSelected: (String?) -> Unit,
-    onSpeciesSelected: (String?) -> Unit,
-    onTypeSelected: (String?) -> Unit,
+    onSpeciesSelected: (String) -> Unit,
+    onTypeSelected: (String) -> Unit,
     onClearFilters: () -> Unit
 ) {
 

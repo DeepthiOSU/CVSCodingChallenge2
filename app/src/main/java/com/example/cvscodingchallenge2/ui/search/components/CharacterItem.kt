@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.ui.search
+package com.example.cvscodingchallenge2.ui.search.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

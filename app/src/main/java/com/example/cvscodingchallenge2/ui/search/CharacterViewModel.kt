@@ -3,7 +3,7 @@ package com.example.cvscodingchallenge2.ui.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
-import com.example.cvscodingchallenge2.data.remote.dto.SearchFilters
+import com.example.cvscodingchallenge2.ui.search.model.SearchFilters
 import com.example.cvscodingchallenge2.data.repository.CharacterRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -31,7 +31,11 @@ class CharacterViewModel(
             .debounce(400)
             .distinctUntilChanged()
             .flatMapLatest { search ->
-                if (search.query.isBlank()) {
+                if (search.query.isBlank() &&
+                    search.status == null &&
+                    search.species.isBlank() &&
+                    search.type.isBlank()
+                ) {
                     flowOf<UiState>(UiState.Idle)
                 } else {
                     flow {
@@ -77,11 +81,11 @@ class CharacterViewModel(
         _filters.value = filters.value.copy(status = status)
     }
 
-    fun onSpeciesSelected(species: String?) {
+    fun onSpeciesSelected(species: String) {
         _filters.value = filters.value.copy(species = species)
     }
 
-    fun onTypeSelected(type: String?) {
+    fun onTypeSelected(type: String) {
         _filters.value = filters.value.copy(type = type)
     }
 }
