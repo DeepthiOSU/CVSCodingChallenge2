@@ -25,7 +25,8 @@ fun FilterSection(
     onStatusSelected: (String?) -> Unit,
     onSpeciesSelected: (String) -> Unit,
     onTypeSelected: (String) -> Unit,
-    onClearFilters: () -> Unit
+    onClearFilters: () -> Unit,
+    hasActiveFilters: Boolean
 ) {
 
     Row(
@@ -66,7 +67,8 @@ fun FilterSection(
         )
 
         TextButton(
-            onClick = onClearFilters
+            onClick = onClearFilters,
+            enabled = hasActiveFilters
         )
         {
             Text("Clear Filters")

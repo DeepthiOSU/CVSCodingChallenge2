@@ -33,16 +33,20 @@ import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CharacterScreen(
+fun CharacterListScreen(
     viewModel: CharacterViewModel,
     onItemClick: (CharacterDto) -> Unit
 ) {
-    val query by viewModel.filters.collectAsState()
+    val filters by viewModel.filters.collectAsState()
     val characters = viewModel.characters.collectAsLazyPagingItems()
-    val isIdle = query.query.isBlank() &&
-            query.status == null &&
-            query.species.isBlank() &&
-            query.type.isBlank()
+    val isIdle = filters.query.isBlank() &&
+            filters.status == null &&
+            filters.species.isBlank() &&
+            filters.type.isBlank()
+    val hasActiveFilters =
+                filters.status != null ||
+                filters.species.isNotBlank() ||
+                filters.type.isNotBlank()
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,7 +65,7 @@ fun CharacterScreen(
         ) {
 
             OutlinedTextField(
-                value = query.query,
+                value = filters.query,
                 onValueChange = {
                     viewModel.onQueryChange(it)
                 },
@@ -78,20 +82,20 @@ fun CharacterScreen(
 
             // FilterSection
             FilterSection(
-                selectedStatus = query.status,
-                selectedSpecies = query.species,
-                selectedType = query.type,
+                selectedStatus = filters.status,
+                selectedSpecies = filters.species,
+                selectedType = filters.type,
                 onStatusSelected = viewModel::onStatusSelected,
                 onSpeciesSelected = viewModel::onSpeciesSelected,
                 onTypeSelected = viewModel::onTypeSelected,
-                onClearFilters = viewModel::clearFilters
+                onClearFilters = viewModel::clearFilters,
+                hasActiveFilters = hasActiveFilters
             )
 
             Spacer(Modifier.height(dimensionResource(R.dimen.standard_padding)))
 
             when {
                 isIdle -> {
-
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.TopCenter

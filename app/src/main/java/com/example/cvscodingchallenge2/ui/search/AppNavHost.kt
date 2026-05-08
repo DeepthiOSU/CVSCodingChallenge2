@@ -12,7 +12,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.cvscodingchallenge2.util.DateUtil
 
 @Composable
-fun HomeScreen(viewModel: CharacterViewModel) {
+fun AppNavHost(viewModel: CharacterViewModel) {
 
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -23,7 +23,7 @@ fun HomeScreen(viewModel: CharacterViewModel) {
     ) {
 
         composable("list") {
-            CharacterScreen(
+            CharacterListScreen(
                 viewModel = viewModel,
                 onItemClick = { character ->
                     navController.navigate("detail/${character.id}")
