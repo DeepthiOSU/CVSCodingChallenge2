@@ -7,8 +7,8 @@ import com.example.cvscodingchallenge2.data.remote.dto.CharacterResponseDto
 import com.example.cvscodingchallenge2.data.remote.dto.InfoDto
 import com.example.cvscodingchallenge2.data.remote.dto.LocationDto
 import com.example.cvscodingchallenge2.data.remote.dto.OriginDto
-import com.example.cvscodingchallenge2.data.remote.SearchFilters
-import com.example.cvscodingchallenge2.ui.paging.CharacterPagingSource
+import com.example.cvscodingchallenge2.ui.search.model.SearchFilters
+import com.example.cvscodingchallenge2.data.paging.CharacterPagingSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
