@@ -1,6 +1,6 @@
 package com.example.cvscodingchallenge2.data.remote
 
-import com.example.cvscodingchallenge2.data.remote.dto.CharacterResponse
+import com.example.cvscodingchallenge2.data.remote.dto.CharacterResponseDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -12,5 +12,5 @@ interface RickMortyApi {
         @Query("species") species: String?,
         @Query("type") type: String?,
         @Query("page") page: Int
-    ): CharacterResponse
+    ): CharacterResponseDto
 }

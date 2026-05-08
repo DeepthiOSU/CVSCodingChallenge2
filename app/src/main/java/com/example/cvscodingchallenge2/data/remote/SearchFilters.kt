@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.data.remote.dto
+package com.example.cvscodingchallenge2.data.remote
 
 data class SearchFilters(
     val query: String = "",
