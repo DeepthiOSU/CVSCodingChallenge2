@@ -2,14 +2,13 @@ package com.example.cvscodingchallenge2.ui.search
 
 import android.content.Intent
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.cvscodingchallenge2.util.DateUtil
 
 @Composable
@@ -39,11 +38,10 @@ fun HomeScreen(viewModel: CharacterViewModel) {
 
             val id = backStackEntry.arguments?.getInt("id")
 
-            val state by viewModel.uiState.collectAsState()
+            val characters =
+                viewModel.characters.collectAsLazyPagingItems()
 
-            val character = (state as? UiState.Success)
-                ?.data
-                ?.find { it.id == id }
+            val character = characters.itemSnapshotList.items.find { it.id == id }
 
             character?.let {
                 CharacterDetail(it, { navController.popBackStack() }) {

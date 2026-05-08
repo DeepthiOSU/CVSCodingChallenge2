@@ -4,6 +4,7 @@ import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.dp
 import com.example.cvscodingchallenge2.R
 
 
@@ -21,8 +23,8 @@ fun FilterSection(
     selectedSpecies: String?,
     selectedType: String?,
     onStatusSelected: (String?) -> Unit,
-    onSpeciesSelected: (String?) -> Unit,
-    onTypeSelected: (String?) -> Unit,
+    onSpeciesSelected: (String) -> Unit,
+    onTypeSelected: (String) -> Unit,
     onClearFilters: () -> Unit
 ) {
 
@@ -42,6 +44,7 @@ fun FilterSection(
         )
 
         OutlinedTextField(
+            modifier = Modifier.width(200.dp),
             value = selectedSpecies ?: "",
             onValueChange = {
                 onSpeciesSelected(it)
@@ -52,6 +55,7 @@ fun FilterSection(
         )
 
         OutlinedTextField(
+            modifier = Modifier.width(200.dp),
             value = selectedType ?: "",
             onValueChange = {
                 onTypeSelected(it)
