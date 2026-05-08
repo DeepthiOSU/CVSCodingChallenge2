@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cvscodingchallenge2.data.remote.RickMortyApi
 import com.example.cvscodingchallenge2.data.repository.CharacterRepository
-import com.example.cvscodingchallenge2.ui.search.AppNavHost
+import com.example.cvscodingchallenge2.ui.navigation.AppNavHost
 import com.example.cvscodingchallenge2.ui.search.CharacterViewModel
 import com.example.cvscodingchallenge2.ui.theme.CVSCodingChallenge2Theme
 import retrofit2.Retrofit

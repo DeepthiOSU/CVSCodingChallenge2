@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.ui.search
+package com.example.cvscodingchallenge2.ui.navigation
 
 import android.content.Intent
 import androidx.compose.runtime.Composable
@@ -9,6 +9,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.example.cvscodingchallenge2.ui.search.detail.CharacterDetail
+import com.example.cvscodingchallenge2.ui.search.CharacterListScreen
+import com.example.cvscodingchallenge2.ui.search.CharacterViewModel
 import com.example.cvscodingchallenge2.util.DateUtil
 
 @Composable

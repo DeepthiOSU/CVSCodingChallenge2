@@ -1,4 +1,4 @@
-package com.example.cvscodingchallenge2.ui.search
+package com.example.cvscodingchallenge2.ui.search.components
 
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.DropdownMenuItem

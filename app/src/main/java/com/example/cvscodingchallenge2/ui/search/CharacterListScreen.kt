@@ -30,6 +30,8 @@ import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.cvscodingchallenge2.R
 import com.example.cvscodingchallenge2.data.remote.dto.CharacterDto
+import com.example.cvscodingchallenge2.ui.search.components.CharacterItem
+import com.example.cvscodingchallenge2.ui.search.components.FilterSection
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
